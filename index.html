@@ -320,8 +320,21 @@
                 let eventsListHTML = '';
                 if (m.events && m.events.length > 0) {
                     eventsListHTML = `
-                        <div class="mt-3 pt-2 border-t border-slate-800 text-xs space-y-1 text-slate-400">
-                            ${m.events.map(ev => `<div>⚽ <span class="text-amber-400">${escapeHTML(ev.minute)}</span> - ${escapeHTML(ev.player)} (${escapeHTML(ev.team)})</div>`).join('')}
+                        <div class="mt-3 pt-2 border-t border-slate-800 text-xs space-y-1.5">
+                            ${m.events.map(ev => {
+                                const isTeamA = ev.team === m.teamA;
+                                const deleteBtn = isAdmin && ev.id
+                                    ? `<button onclick="deleteEvent(${ev.id})" title="Eliminar gol" class="text-slate-500 hover:text-red-400 px-1 transition"><i class="fas fa-trash-alt"></i></button>`
+                                    : '';
+                                return `
+                                    <div class="flex ${isTeamA ? 'justify-start' : 'justify-end'}">
+                                        <div class="inline-flex items-center gap-2 rounded-lg bg-slate-900/70 border border-slate-800 px-2 py-1 max-w-[90%] ${isTeamA ? 'text-left' : 'text-right'}">
+                                            <span class="text-slate-300 truncate">⚽ <span class="text-amber-400">${escapeHTML(ev.minute)}</span> - ${escapeHTML(ev.player)} <span class="text-slate-500">(${escapeHTML(ev.team)})</span></span>
+                                            ${deleteBtn}
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
                         </div>
                     `;
                 }
@@ -366,6 +379,13 @@
 
         function adjustScore(matchId, team, delta) {
             api('score', { matchId, team, delta });
+        }
+
+        function deleteEvent(eventId) {
+            if (!confirm('¿Eliminar este gol?')) return;
+            api('delete-event', { eventId }).catch(err => {
+                alert(err.message || 'No se pudo eliminar el gol.');
+            });
         }
 
         function openGoalModal(matchId) {
@@ -446,7 +466,7 @@
         }
 
         Object.assign(window, {
-            toggleAdminMode, switchTab, filterGroup, adjustScore, openGoalModal, closeGoalModal, saveGoal,
+            toggleAdminMode, switchTab, filterGroup, adjustScore, deleteEvent, openGoalModal, closeGoalModal, saveGoal,
             vote, handleLogin, closeLoginModal, handleLogout
         });
 

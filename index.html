@@ -121,8 +121,15 @@
 
         <section id="sec-encuesta" class="hidden">
             <div class="card-bg rounded-xl p-5 border border-amber-500/20">
-                <h2 class="text-xl font-black text-amber-400 mb-1">¿Quién creés que gana la Copa?</h2>
-                <p class="text-xs text-slate-400 mb-2">¡Votá por tu candidato para la 1.ª Edición!</p>
+                <div class="flex items-start justify-between gap-3">
+                    <div>
+                        <h2 class="text-xl font-black text-amber-400 mb-1">¿Quién creés que gana la Copa?</h2>
+                        <p class="text-xs text-slate-400 mb-2">¡Votá por tu candidato para la 1.ª Edición!</p>
+                    </div>
+                    <button id="resetVotesBtn" onclick="resetVotes()" class="hidden shrink-0 text-[11px] bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-300 px-2 py-1 rounded-lg transition">
+                        <i class="fas fa-rotate-left mr-1"></i>Reiniciar
+                    </button>
+                </div>
                 <p id="pollStatus" class="text-xs text-emerald-400 font-semibold mb-4 hidden">
                     <i class="fas fa-check-circle mr-1"></i> Ya registraste tu voto
                 </p>
@@ -233,6 +240,7 @@
         function updateAdminUI() {
             document.getElementById('adminStatusText').innerText = isAdmin ? 'Modo Planilla (Activado)' : 'Modo Planilla (Desactivado)';
             document.getElementById('logoutBtn').classList.toggle('hidden', !isAdminUser);
+            document.getElementById('resetVotesBtn').classList.toggle('hidden', !isAdmin);
             renderMatches();
         }
 
@@ -284,6 +292,16 @@
             isAdmin = false;
             isAdminUser = false;
             updateAdminUI();
+        }
+
+        async function resetVotes() {
+            if (!confirm('¿Reiniciar todos los votos a 0? Todos van a poder volver a votar.')) return;
+            try {
+                await api('reset-votes', {});
+                alert('Votos reiniciados.');
+            } catch (err) {
+                alert(err.message || 'No se pudieron reiniciar los votos.');
+            }
         }
 
         function switchTab(tab) {
@@ -474,7 +492,7 @@
 
         Object.assign(window, {
             toggleAdminMode, switchTab, filterGroup, adjustScore, deleteEvent, openGoalModal, closeGoalModal, saveGoal,
-            vote, handleLogin, closeLoginModal, handleLogout
+            vote, handleLogin, closeLoginModal, handleLogout, resetVotes
         });
 
         renderMatches();

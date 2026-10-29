@@ -77,7 +77,13 @@ insert into public.poll_options (id, team, votes) values
   (3, 'Estudiantes Negro', 9),
   (4, 'Embajadores', 15),
   (5, 'Ferro Blanco', 6),
-  (6, 'Racing', 11)
+  (6, 'Racing', 11),
+  (7, 'Alumni', 0),
+  (8, 'CIFJ Proyecto Jugador', 0),
+  (9, 'Ferro Celeste', 0),
+  (10, 'Fortín Azul', 0),
+  (11, 'Fortín Blanco', 0),
+  (12, 'Sierra Chica', 0)
 on conflict (id) do nothing;
 
 create or replace function public.vote_for_option(p_voter_hash text, p_option_id integer)

@@ -188,6 +188,13 @@
 
         const escapeHTML = (s) => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
+        function formatMinute(value) {
+            const text = String(value == null ? '' : value).trim();
+            if (!text) return "10'";
+            if (text.includes("'")) return text;
+            return /^\d+(?:\+\d+)?$/.test(text) ? `${text}'` : text;
+        }
+
         async function api(action, body) {
             const res = await fetch(`/api/${action}`, body
                 ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), credentials: 'same-origin' }
@@ -329,7 +336,7 @@
                                 return `
                                     <div class="flex ${isTeamA ? 'justify-start' : 'justify-end'}">
                                         <div class="inline-flex items-center gap-2 rounded-lg bg-slate-900/70 border border-slate-800 px-2 py-1 max-w-[90%] ${isTeamA ? 'text-left' : 'text-right'}">
-                                            <span class="text-slate-300 truncate">⚽ <span class="text-amber-400">${escapeHTML(ev.minute)}</span> - ${escapeHTML(ev.player)} <span class="text-slate-500">(${escapeHTML(ev.team)})</span></span>
+                                            <span class="text-slate-300 truncate">⚽ <span class="text-amber-400">${escapeHTML(formatMinute(ev.minute))}</span> - ${escapeHTML(ev.player)} <span class="text-slate-500">(${escapeHTML(ev.team)})</span></span>
                                             ${deleteBtn}
                                         </div>
                                     </div>

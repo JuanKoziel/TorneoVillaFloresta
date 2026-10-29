@@ -1,0 +1,17 @@
+{
+  "name": "copa-villa-floresta-2026",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Copa Villa Floresta 2026 - Vercel + Supabase",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env.local server.js",
+    "dev": "node --env-file-if-exists=.env.local --watch server.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.58.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

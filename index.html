@@ -656,7 +656,12 @@ function renderMatches() {
             const winner = slot === 'A' ? match.teamA : match.teamB;
             const nextSlot = match.next_slot || 'A';
             try {
-                await api('set-winner', { matchId, winner, nextMatchId: match.next_match_id, nextSlot });
+                const data = await api('set-winner', { matchId, winner, nextMatchId: match.next_match_id, nextSlot });
+                if (data && data.matches) {
+                    matches = data.matches;
+                    renderMatches();
+                    renderPlayoffs();
+                }
             } catch (e) {
                 alert('No se pudo avanzar el ganador: ' + e.message);
             }

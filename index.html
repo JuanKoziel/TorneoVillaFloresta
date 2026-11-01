@@ -56,6 +56,9 @@
             <button onclick="switchTab('partidos')" id="tab-partidos" class="flex-1 py-3 border-b-2 border-amber-500 text-amber-400">
                 <i class="fas fa-futbol mr-1"></i> Partidos
             </button>
+            <button onclick="switchTab('copas')" id="tab-copas" class="flex-1 py-3 border-b-2 border-transparent text-slate-400 hover:text-slate-200">
+                <i class="fas fa-trophy mr-1"></i> Copas
+            </button>
             <button onclick="switchTab('zonas')" id="tab-zonas" class="flex-1 py-3 border-b-2 border-transparent text-slate-400 hover:text-slate-200">
                 <i class="fas fa-th-list mr-1"></i> Zonas/Tabla
             </button>
@@ -83,176 +86,38 @@
                 <button onclick="filterGroup('C')" class="group-btn text-xs font-bold px-3 py-1.5 rounded-full bg-slate-800 text-slate-400 border border-slate-700" data-group="C">Grupo C</button>
             </div>
 
-            <div id="matchesContainer" class="space-y-3 mb-8"></div>
+            <div id="matchesContainer" class="space-y-3"></div>
+        </section>
 
-            <div class="flex items-center justify-between mb-3">
+        <section id="sec-copas" class="hidden">
+            <div class="flex items-center justify-between mb-4">
                 <h2 class="text-lg font-bold text-slate-200 flex items-center gap-2">
                     <i class="fas fa-trophy trophy-text"></i>
-                    Domingo 1 de Noviembre
+                    Copa Villa Floresta - Cruces
                 </h2>
-                <span class="text-xs text-slate-400">Cruces</span>
+                <span class="text-xs text-slate-400">Domingo 1 de Noviembre</span>
             </div>
 
             <div class="mb-6">
                 <h3 class="text-base font-bold text-amber-400 mb-3 flex items-center gap-2">
                     <i class="fas fa-crown"></i> Copa de Oro
                 </h3>
-                <p class="text-xs text-slate-400 mb-3 font-semibold">Cuartos de final</p>
-                <div class="space-y-2 mb-4">
-                    <div class="card-bg rounded-lg p-3 border border-slate-800">
-                        <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
-                            <span>Cuartos 1</span>
-                            <span><i class="far fa-clock mr-1"></i>09:15 – 09:50 hs</span>
-                        </div>
-                        <div class="flex items-center justify-between text-sm">
-                            <div class="flex-1 text-right font-semibold text-slate-200">Trapito (4.º)</div>
-                            <div class="mx-3 text-slate-500">vs</div>
-                            <div class="flex-1 text-left font-semibold text-slate-200">Fortín Azul (5.º)</div>
-                        </div>
-                    </div>
-                    <div class="card-bg rounded-lg p-3 border border-slate-800">
-                        <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
-                            <span>Cuartos 2</span>
-                            <span><i class="far fa-clock mr-1"></i>09:50 – 10:25 hs</span>
-                        </div>
-                        <div class="flex items-center justify-between text-sm">
-                            <div class="flex-1 text-right font-semibold text-slate-200">Alumni (1.º)</div>
-                            <div class="mx-3 text-slate-500">vs</div>
-                            <div class="flex-1 text-left font-semibold text-slate-200">Embajadores (8.º)</div>
-                        </div>
-                    </div>
-                    <div class="card-bg rounded-lg p-3 border border-slate-800">
-                        <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
-                            <span>Cuartos 3</span>
-                            <span><i class="far fa-clock mr-1"></i>11:00 – 11:35 hs</span>
-                        </div>
-                        <div class="flex items-center justify-between text-sm">
-                            <div class="flex-1 text-right font-semibold text-slate-200">Fortín Blancos (2.º)</div>
-                            <div class="mx-3 text-slate-500">vs</div>
-                            <div class="flex-1 text-left font-semibold text-slate-200">Ferro (7.º)</div>
-                        </div>
-                    </div>
-                    <div class="card-bg rounded-lg p-3 border border-slate-800">
-                        <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
-                            <span>Cuartos 4</span>
-                            <span><i class="far fa-clock mr-1"></i>11:35 – 12:10 hs</span>
-                        </div>
-                        <div class="flex items-center justify-between text-sm">
-                            <div class="flex-1 text-right font-semibold text-slate-200">Racing (3.º)</div>
-                            <div class="mx-3 text-slate-500">vs</div>
-                            <div class="flex-1 text-left font-semibold text-slate-200">Villa Floresta (6.º)</div>
-                        </div>
-                    </div>
-                </div>
-
-                <p class="text-xs text-slate-400 mb-3 font-semibold">Semifinales</p>
-                <div class="space-y-2 mb-4">
-                    <div class="card-bg rounded-lg p-3 border border-slate-800">
-                        <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
-                            <span>Semifinal 1</span>
-                            <span><i class="far fa-clock mr-1"></i>10:35 – 11:10 hs</span>
-                        </div>
-                        <div class="flex items-center justify-between text-sm">
-                            <div class="flex-1 text-right font-semibold text-slate-300">Ganador Cuartos 1</div>
-                            <div class="mx-3 text-slate-500">vs</div>
-                            <div class="flex-1 text-left font-semibold text-slate-300">Ganador Cuartos 2</div>
-                        </div>
-                    </div>
-                    <div class="card-bg rounded-lg p-3 border border-slate-800">
-                        <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
-                            <span>Semifinal 2</span>
-                            <span><i class="far fa-clock mr-1"></i>12:10 – 12:45 hs</span>
-                        </div>
-                        <div class="flex items-center justify-between text-sm">
-                            <div class="flex-1 text-right font-semibold text-slate-300">Ganador Cuartos 3</div>
-                            <div class="mx-3 text-slate-500">vs</div>
-                            <div class="flex-1 text-left font-semibold text-slate-300">Ganador Cuartos 4</div>
-                        </div>
-                    </div>
-                </div>
-
-                <p class="text-xs text-slate-400 mb-3 font-semibold">Definiciones</p>
-                <div class="space-y-2">
-                    <div class="card-bg rounded-lg p-3 border border-slate-800">
-                        <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
-                            <span>3.º puesto</span>
-                            <span><i class="far fa-clock mr-1"></i>13:00 – 13:35 hs</span>
-                        </div>
-                        <div class="flex items-center justify-between text-sm">
-                            <div class="flex-1 text-right font-semibold text-slate-300">Perdedores de semifinales</div>
-                            <div class="mx-3 text-slate-500">vs</div>
-                            <div class="flex-1 text-left font-semibold text-slate-300">Perdedores de semifinales</div>
-                        </div>
-                    </div>
-                    <div class="card-bg rounded-lg p-3 border border-amber-500/30">
-                        <div class="flex justify-between items-center text-xs text-amber-400 mb-2">
-                            <span class="font-bold">FINAL</span>
-                            <span><i class="far fa-clock mr-1"></i>13:35 – 14:10 hs</span>
-                        </div>
-                        <div class="flex items-center justify-between text-sm">
-                            <div class="flex-1 text-right font-bold text-amber-300">Ganadores de semifinales</div>
-                            <div class="mx-3 text-amber-400">vs</div>
-                            <div class="flex-1 text-left font-bold text-amber-300">Ganadores de semifinales</div>
-                        </div>
-                    </div>
-                </div>
+                <p class="text-xs text-slate-400 mb-2 font-semibold">Cuartos de final</p>
+                <div id="copaOroCuartos" class="space-y-2 mb-4"></div>
+                <p class="text-xs text-slate-400 mb-2 font-semibold">Semifinales</p>
+                <div id="copaOroSemis" class="space-y-2 mb-4"></div>
+                <p class="text-xs text-slate-400 mb-2 font-semibold">Definiciones</p>
+                <div id="copaOroFinales" class="space-y-2"></div>
             </div>
 
             <div>
                 <h3 class="text-base font-bold text-slate-300 mb-3 flex items-center gap-2">
                     <i class="fas fa-medal"></i> Copa de Plata
                 </h3>
-                <p class="text-xs text-slate-400 mb-3 font-semibold">Semifinales</p>
-                <div class="space-y-2 mb-4">
-                    <div class="card-bg rounded-lg p-3 border border-slate-800">
-                        <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
-                            <span>Semifinal 1</span>
-                            <span><i class="far fa-clock mr-1"></i>18:00 – 18:35 hs</span>
-                        </div>
-                        <div class="flex items-center justify-between text-sm">
-                            <div class="flex-1 text-right font-semibold text-slate-200">Ferro B (9.º)</div>
-                            <div class="mx-3 text-slate-500">vs</div>
-                            <div class="flex-1 text-left font-semibold text-slate-200">CIFS (12.º)</div>
-                        </div>
-                    </div>
-                    <div class="card-bg rounded-lg p-3 border border-slate-800">
-                        <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
-                            <span>Semifinal 2</span>
-                            <span><i class="far fa-clock mr-1"></i>18:35 – 19:10 hs</span>
-                        </div>
-                        <div class="flex items-center justify-between text-sm">
-                            <div class="flex-1 text-right font-semibold text-slate-200">Estudiantes N. (10.º)</div>
-                            <div class="mx-3 text-slate-500">vs</div>
-                            <div class="flex-1 text-left font-semibold text-slate-200">Sierra Chica (11.º)</div>
-                        </div>
-                    </div>
-                </div>
-
-                <p class="text-xs text-slate-400 mb-3 font-semibold">Definiciones</p>
-                <div class="space-y-2">
-                    <div class="card-bg rounded-lg p-3 border border-slate-800">
-                        <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
-                            <span>3.º puesto</span>
-                            <span><i class="far fa-clock mr-1"></i>19:10 – 19:45 hs</span>
-                        </div>
-                        <div class="flex items-center justify-between text-sm">
-                            <div class="flex-1 text-right font-semibold text-slate-300">Perdedores de semifinales</div>
-                            <div class="mx-3 text-slate-500">vs</div>
-                            <div class="flex-1 text-left font-semibold text-slate-300">Perdedores de semifinales</div>
-                        </div>
-                    </div>
-                    <div class="card-bg rounded-lg p-3 border border-slate-600">
-                        <div class="flex justify-between items-center text-xs text-slate-300 mb-2">
-                            <span class="font-bold">FINAL</span>
-                            <span><i class="far fa-clock mr-1"></i>19:45 – 20:20 hs</span>
-                        </div>
-                        <div class="flex items-center justify-between text-sm">
-                            <div class="flex-1 text-right font-bold text-slate-200">Ganadores de semifinales</div>
-                            <div class="mx-3 text-slate-400">vs</div>
-                            <div class="flex-1 text-left font-bold text-slate-200">Ganadores de semifinales</div>
-                        </div>
-                    </div>
-                </div>
+                <p class="text-xs text-slate-400 mb-2 font-semibold">Semifinales</p>
+                <div id="copaPlataSemis" class="space-y-2 mb-4"></div>
+                <p class="text-xs text-slate-400 mb-2 font-semibold">Definiciones</p>
+                <div id="copaPlataFinales" class="space-y-2"></div>
             </div>
         </section>
 
@@ -590,15 +455,24 @@
         }
 
         function switchTab(tab) {
-            ['partidos', 'zonas', 'encuesta'].forEach(t => {
-                document.getElementById(`sec-${t}`).classList.add('hidden');
-                document.getElementById(`tab-${t}`).classList.remove('border-amber-500', 'text-amber-400');
-                document.getElementById(`tab-${t}`).classList.add('border-transparent', 'text-slate-400');
+            ['partidos', 'copas', 'zonas', 'encuesta'].forEach(t => {
+                const sec = document.getElementById(`sec-${t}`);
+                if (sec) sec.classList.add('hidden');
+                const tabBtn = document.getElementById(`tab-${t}`);
+                if (tabBtn) {
+                    tabBtn.classList.remove('border-amber-500', 'text-amber-400');
+                    tabBtn.classList.add('border-transparent', 'text-slate-400');
+                }
             });
 
-            document.getElementById(`sec-${tab}`).classList.remove('hidden');
-            document.getElementById(`tab-${tab}`).classList.add('border-amber-500', 'text-amber-400');
-            document.getElementById(`tab-${tab}`).classList.remove('border-transparent', 'text-slate-400');
+            const secActive = document.getElementById(`sec-${tab}`);
+            if (secActive) secActive.classList.remove('hidden');
+            const tabActive = document.getElementById(`tab-${tab}`);
+            if (tabActive) {
+                tabActive.classList.add('border-amber-500', 'text-amber-400');
+                tabActive.classList.remove('border-transparent', 'text-slate-400');
+            }
+            if (tab === 'copas') renderPlayoffs();
         }
 
         function filterGroup(grp) {
@@ -826,8 +700,9 @@
 
         renderMatches();
         renderPoll();
+        renderPlayoffs();
         api('data').catch(err => console.error(err));
-        setInterval(() => { if (document.visibilityState === 'visible') api('data').catch(() => {}); }, 20000);
+        setInterval(() => { if (document.visibilityState === 'visible') api('data').then(d => { if (d) { matches = d.matches || []; renderMatches(); renderPoll(); renderPlayoffs(); } }).catch(() => {}); }, 20000);
         refreshUser().catch(() => {});
     </script>
 </body>

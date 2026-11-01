@@ -6,7 +6,12 @@ create table if not exists public.matches (
   team_b text not null,
   score_a integer not null default 0 check (score_a >= 0),
   score_b integer not null default 0 check (score_b >= 0),
-  created_at timestamptz not null default now()
+  created_at timestamptz not null default now(),
+  cup text,
+  phase text,
+  bracket_key text,
+  next_match_id integer references public.matches(id),
+  next_slot text
 );
 
 create table if not exists public.match_events (

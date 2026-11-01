@@ -608,6 +608,9 @@ function renderMatches() {
                             <button onclick="setWinner(${m.id}, 'B')" class="w-full bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 px-2 py-1 rounded border border-emerald-500/30 text-xs mt-1">
                                 <i class="fas fa-trophy mr-1"></i> Ganador: ${escapeHTML(m.teamB)}
                             </button>
+                            <button onclick="resetWinner(${m.id})" class="w-full bg-slate-600/20 hover:bg-slate-600/30 text-slate-300 px-2 py-1 rounded border border-slate-600/30 text-xs mt-1">
+                                <i class="fas fa-rotate-left mr-1"></i> Resetear ganador
+                            </button>
                         </div>
                     ` : '';
                     admin = `
@@ -670,6 +673,21 @@ function renderMatches() {
                 }
             } catch (e) {
                 alert('No se pudo avanzar el ganador: ' + e.message);
+            }
+        }
+
+        async function resetWinner(matchId) {
+            const match = matches.find(m => m.id === matchId);
+            if (!match || !match.next_match_id) return;
+            try {
+                const data = await api('reset-winner', { matchId });
+                if (data && data.matches) {
+                    matches = data.matches;
+                    renderMatches();
+                    renderPlayoffs();
+                }
+            } catch (e) {
+                alert('No se pudo resetear el ganador: ' + e.message);
             }
         }
 
@@ -812,7 +830,7 @@ function renderMatches() {
 
         Object.assign(window, {
             toggleAdminMode, switchTab, filterGroup, adjustScore, deleteEvent, openGoalModal, closeGoalModal, saveGoal,
-            vote, voteCup, setWinner, handleLogin, closeLoginModal, handleLogout, resetVotes
+            vote, voteCup, setWinner, resetWinner, handleLogin, closeLoginModal, handleLogout, resetVotes
         });
 
         renderMatches();

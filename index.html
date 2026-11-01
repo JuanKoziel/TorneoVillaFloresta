@@ -691,9 +691,15 @@ function renderMatches() {
             }
         }
 
-        function deleteEvent(eventId) {
+function deleteEvent(eventId) {
             if (!confirm('¿Eliminar este gol?')) return;
-            api('delete-event', { eventId }).catch(err => {
+            api('delete-event', { eventId }).then(data => {
+                if (data && data.matches) {
+                    matches = data.matches;
+                    renderMatches();
+                    renderPlayoffs();
+                }
+            }).catch(err => {
                 alert(err.message || 'No se pudo eliminar el gol.');
             });
         }
@@ -723,7 +729,13 @@ function renderMatches() {
             const minute = document.getElementById('goalMinuteInput').value || "10'";
             const player = document.getElementById('goalPlayerInput').value || 'Camiseta #9';
             closeGoalModal();
-            api('goal', { matchId: match.id, team, minute, player });
+            api('goal', { matchId: match.id, team, minute, player }).then(data => {
+                if (data && data.matches) {
+                    matches = data.matches;
+                    renderMatches();
+                    renderPlayoffs();
+                }
+            });
         }
 
         const pollTeamsOro = ['Alumni', 'Trapito', 'Racing', 'Fortín Blancos', 'Fortín Azul', 'Villa Floresta', 'Ferro', 'Embajadores'];

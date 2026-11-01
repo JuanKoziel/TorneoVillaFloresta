@@ -672,6 +672,9 @@
             api('goal', { matchId: match.id, team, minute, player });
         }
 
+        const pollTeamsOro = ['Alumni', 'Trapito', 'Racing', 'Fortín Blancos', 'Fortín Azul', 'Villa Floresta', 'Ferro', 'Embajadores'];
+        const pollTeamsPlata = ['Ferro B', 'Estudiantes N.', 'Sierra Chica', 'CIFS'];
+
         function renderPoll() {
             const containerOro = document.getElementById('pollOptionsOro');
             const containerPlata = document.getElementById('pollOptionsPlata');
@@ -701,19 +704,22 @@
             const totalOro = oroOptions.reduce((acc, curr) => acc + curr.votes, 0) || 1;
             const totalPlata = plataOptions.reduce((acc, curr) => acc + curr.votes, 0) || 1;
 
-            oroOptions.forEach((item) => {
-                const percentage = Math.round((item.votes / totalOro) * 100);
-                const selected = votedOro && item.id === votedOroOptionId;
-                const idx = pollData.findIndex(p => p.id === item.id);
+            pollTeamsOro.forEach((team) => {
+                const item = oroOptions.find(o => o.team === team);
+                const votes = item ? item.votes : 0;
+                const id = item ? item.id : 0;
+                const percentage = Math.round((votes / totalOro) * 100);
+                const selected = votedOro && id === votedOroOptionId;
+                const idx = pollData.findIndex(p => p.id === id);
                 const opt = document.createElement('div');
                 opt.className = `space-y-1 ${selected ? 'rounded-lg ring-1 ring-emerald-500/40 bg-emerald-500/5 p-1.5 -m-1.5' : ''}`;
                 opt.innerHTML = `
                     <div class="flex justify-between items-center text-[11px] font-semibold gap-1">
                         <span class="flex items-center gap-1 min-w-0">
                             <i class="fas ${selected ? 'fa-circle-check text-emerald-400' : 'fa-circle text-slate-600'} shrink-0 text-[9px]"></i>
-                            <span class="${selected ? 'text-emerald-300' : 'text-slate-300'} truncate">${escapeHTML(item.team)}</span>
+                            <span class="${selected ? 'text-emerald-300' : 'text-slate-300'} truncate">${escapeHTML(team)}</span>
                         </span>
-                        <span class="text-amber-400 shrink-0 text-[10px]">${percentage}% (${item.votes})</span>
+                        <span class="text-amber-400 shrink-0 text-[10px]">${percentage}% (${votes})</span>
                     </div>
                     <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-slate-800 ${votedOro ? 'cursor-default' : 'cursor-pointer'}" ${votedOro ? '' : `onclick="voteCup(${idx}, 'ORO')"`}>
                         <div class="${selected ? 'bg-emerald-400' : 'bg-amber-500'} h-1.5 rounded-full" style="width: ${percentage}%"></div>
@@ -722,19 +728,22 @@
                 if (containerOro) containerOro.appendChild(opt);
             });
 
-            plataOptions.forEach((item) => {
-                const percentage = Math.round((item.votes / totalPlata) * 100);
-                const selected = votedPlata && item.id === votedPlataOptionId;
-                const idx = pollData.findIndex(p => p.id === item.id);
+            pollTeamsPlata.forEach((team) => {
+                const item = plataOptions.find(o => o.team === team);
+                const votes = item ? item.votes : 0;
+                const id = item ? item.id : 0;
+                const percentage = Math.round((votes / totalPlata) * 100);
+                const selected = votedPlata && id === votedPlataOptionId;
+                const idx = pollData.findIndex(p => p.id === id);
                 const opt = document.createElement('div');
                 opt.className = `space-y-1 ${selected ? 'rounded-lg ring-1 ring-emerald-500/40 bg-emerald-500/5 p-1.5 -m-1.5' : ''}`;
                 opt.innerHTML = `
                     <div class="flex justify-between items-center text-[11px] font-semibold gap-1">
                         <span class="flex items-center gap-1 min-w-0">
                             <i class="fas ${selected ? 'fa-circle-check text-emerald-400' : 'fa-circle text-slate-600'} shrink-0 text-[9px]"></i>
-                            <span class="${selected ? 'text-emerald-300' : 'text-slate-300'} truncate">${escapeHTML(item.team)}</span>
+                            <span class="${selected ? 'text-emerald-300' : 'text-slate-300'} truncate">${escapeHTML(team)}</span>
                         </span>
-                        <span class="text-slate-300 shrink-0 text-[10px]">${percentage}% (${item.votes})</span>
+                        <span class="text-slate-300 shrink-0 text-[10px]">${percentage}% (${votes})</span>
                     </div>
                     <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-slate-800 ${votedPlata ? 'cursor-default' : 'cursor-pointer'}" ${votedPlata ? '' : `onclick="voteCup(${idx}, 'PLATA')"`}>
                         <div class="${selected ? 'bg-emerald-400' : 'bg-slate-400'} h-1.5 rounded-full" style="width: ${percentage}%"></div>

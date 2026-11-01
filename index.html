@@ -647,7 +647,13 @@ function renderMatches() {
         }
 
         function adjustScore(matchId, team, delta) {
-            api('score', { matchId, team, delta });
+            api('score', { matchId, team, delta }).then(data => {
+                if (data && data.matches) {
+                    matches = data.matches;
+                    renderMatches();
+                    renderPlayoffs();
+                }
+            });
         }
 
         async function setWinner(matchId, slot) {

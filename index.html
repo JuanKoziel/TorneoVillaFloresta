@@ -778,7 +778,8 @@ function deleteEvent(eventId) {
                 const selected = votedOro && id === votedOroOptionId;
                 const idx = pollData.findIndex(p => p.id === id);
                 const opt = document.createElement('div');
-                opt.className = `space-y-1 ${selected ? 'rounded-lg ring-1 ring-emerald-500/40 bg-emerald-500/5 p-1.5 -m-1.5' : ''}`;
+                opt.className = `space-y-1 ${selected ? 'rounded-lg ring-1 ring-emerald-500/40 bg-emerald-500/5 p-1.5 -m-1.5' : ''} ${votedOro ? 'cursor-default' : 'cursor-pointer'}`;
+                opt.onclick = votedOro ? null : () => voteCup(idx, 'ORO');
                 opt.innerHTML = `
                     <div class="flex justify-between items-center text-[11px] font-semibold gap-1">
                         <span class="flex items-center gap-1 min-w-0">
@@ -787,7 +788,7 @@ function deleteEvent(eventId) {
                         </span>
                         <span class="text-amber-400 shrink-0 text-[10px]">${percentage}% (${votes})</span>
                     </div>
-                    <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-slate-800 ${votedOro ? 'cursor-default' : 'cursor-pointer'}" ${votedOro ? '' : `onclick="voteCup(${idx}, 'ORO')"`}>
+                    <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-slate-800">
                         <div class="${selected ? 'bg-emerald-400' : 'bg-amber-500'} h-1.5 rounded-full" style="width: ${percentage}%"></div>
                     </div>
                 `;
@@ -802,7 +803,8 @@ function deleteEvent(eventId) {
                 const selected = votedPlata && id === votedPlataOptionId;
                 const idx = pollData.findIndex(p => p.id === id);
                 const opt = document.createElement('div');
-                opt.className = `space-y-1 ${selected ? 'rounded-lg ring-1 ring-emerald-500/40 bg-emerald-500/5 p-1.5 -m-1.5' : ''}`;
+                opt.className = `space-y-1 ${selected ? 'rounded-lg ring-1 ring-emerald-500/40 bg-emerald-500/5 p-1.5 -m-1.5' : ''} ${votedPlata ? 'cursor-default' : 'cursor-pointer'}`;
+                opt.onclick = votedPlata ? null : () => voteCup(idx, 'PLATA');
                 opt.innerHTML = `
                     <div class="flex justify-between items-center text-[11px] font-semibold gap-1">
                         <span class="flex items-center gap-1 min-w-0">
@@ -811,7 +813,7 @@ function deleteEvent(eventId) {
                         </span>
                         <span class="text-slate-300 shrink-0 text-[10px]">${percentage}% (${votes})</span>
                     </div>
-                    <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-slate-800 ${votedPlata ? 'cursor-default' : 'cursor-pointer'}" ${votedPlata ? '' : `onclick="voteCup(${idx}, 'PLATA')"`}>
+                    <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-slate-800">
                         <div class="${selected ? 'bg-emerald-400' : 'bg-slate-400'} h-1.5 rounded-full" style="width: ${percentage}%"></div>
                     </div>
                 `;

@@ -383,7 +383,7 @@
             <div class="flex items-start justify-between gap-3 mb-4">
                 <div>
                     <h2 class="text-lg font-bold text-slate-200">Encuestas</h2>
-                    <p class="text-xs text-slate-400">Votá por el ganador de cada copa</p>
+                    <p class="text-xs text-slate-400">Podés votar una vez por cada copa</p>
                 </div>
                 <button id="resetVotesBtn" onclick="resetVotes()" class="hidden shrink-0 text-[11px] bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-300 px-2 py-1 rounded-lg transition">
                     <i class="fas fa-rotate-left mr-1"></i>Reiniciar
@@ -391,23 +391,23 @@
             </div>
 
             <div class="grid grid-cols-2 gap-3">
-                <div class="card-bg rounded-xl p-4 border border-amber-500/20">
-                    <div class="flex items-center gap-2 mb-1">
+                <div class="card-bg rounded-xl p-4 border border-amber-500/30">
+                    <div class="flex items-center gap-2 mb-2">
                         <i class="fas fa-crown text-amber-400"></i>
                         <h3 class="text-sm font-black text-amber-400">Copa de Oro</h3>
                     </div>
-                    <p id="pollStatusOro" class="text-[10px] text-emerald-400 font-semibold mb-3 hidden">
+                    <p id="pollStatusOro" class="text-[10px] text-emerald-400 font-semibold mb-2 hidden">
                         <i class="fas fa-check-circle mr-1"></i> Ya votaste
                     </p>
                     <div id="pollOptionsOro" class="space-y-2"></div>
                 </div>
 
                 <div class="card-bg rounded-xl p-4 border border-slate-600/50">
-                    <div class="flex items-center gap-2 mb-1">
+                    <div class="flex items-center gap-2 mb-2">
                         <i class="fas fa-medal text-slate-300"></i>
                         <h3 class="text-sm font-black text-slate-300">Copa de Plata</h3>
                     </div>
-                    <p id="pollStatusPlata" class="text-[10px] text-emerald-400 font-semibold mb-3 hidden">
+                    <p id="pollStatusPlata" class="text-[10px] text-emerald-400 font-semibold mb-2 hidden">
                         <i class="fas fa-check-circle mr-1"></i> Ya votaste
                     </p>
                     <div id="pollOptionsPlata" class="space-y-2"></div>
@@ -469,6 +469,10 @@
         let pollData = [];
         let hasVoted = false;
         let votedOptionId = null;
+        let votedOro = false;
+        let votedPlata = false;
+        let votedOroOptionId = null;
+        let votedPlataOptionId = null;
 
         const escapeHTML = (s) => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
@@ -505,6 +509,10 @@
 
             if (typeof data.voted === 'boolean') hasVoted = data.voted;
             if (data.votedOptionId !== undefined) votedOptionId = data.votedOptionId;
+            if (typeof data.votedOro === 'boolean') votedOro = data.votedOro;
+            if (typeof data.votedPlata === 'boolean') votedPlata = data.votedPlata;
+            if (data.votedOroOptionId !== undefined) votedOroOptionId = data.votedOroOptionId;
+            if (data.votedPlataOptionId !== undefined) votedPlataOptionId = data.votedPlataOptionId;
             if (Array.isArray(data.matches)) {
                 matches = data.matches;
                 pollData = data.poll || [];
@@ -726,32 +734,31 @@
 
             const statusElOro = document.getElementById('pollStatusOro');
             const statusElPlata = document.getElementById('pollStatusPlata');
-
-            const oroOptions = pollData.filter(p => p.category === 'ORO');
-            const plataOptions = pollData.filter(p => p.category === 'PLATA');
-
-            const chosenOro = oroOptions.find(p => p.id === votedOptionId);
-            const chosenPlata = plataOptions.find(p => p.id === votedOptionId);
-
             if (statusElOro) {
-                statusElOro.classList.toggle('hidden', !(hasVoted && chosenOro));
-                if (hasVoted && chosenOro) {
-                    statusElOro.innerHTML = `<i class="fas fa-check-circle mr-1"></i> Votaste por ${escapeHTML(chosenOro.team)}`;
+                statusElOro.classList.toggle('hidden', !votedOro);
+                if (votedOro) {
+                    const chosen = pollData.find(p => p.id === votedOroOptionId);
+                    statusElOro.innerHTML = chosen ? `<i class="fas fa-check-circle mr-1"></i> Ya votaste por ${escapeHTML(chosen.team)}` : `<i class="fas fa-check-circle mr-1"></i> Ya votaste`;
                 }
             }
             if (statusElPlata) {
-                statusElPlata.classList.toggle('hidden', !(hasVoted && chosenPlata));
-                if (hasVoted && chosenPlata) {
-                    statusElPlata.innerHTML = `<i class="fas fa-check-circle mr-1"></i> Votaste por ${escapeHTML(chosenPlata.team)}`;
+                statusElPlata.classList.toggle('hidden', !votedPlata);
+                if (votedPlata) {
+                    const chosen = pollData.find(p => p.id === votedPlataOptionId);
+                    statusElPlata.innerHTML = chosen ? `<i class="fas fa-check-circle mr-1"></i> Ya votaste por ${escapeHTML(chosen.team)}` : `<i class="fas fa-check-circle mr-1"></i> Ya votaste`;
                 }
             }
+
+            const oroOptions = pollData.filter(p => p.category === 'ORO');
+            const plataOptions = pollData.filter(p => p.category === 'PLATA');
 
             const totalOro = oroOptions.reduce((acc, curr) => acc + curr.votes, 0) || 1;
             const totalPlata = plataOptions.reduce((acc, curr) => acc + curr.votes, 0) || 1;
 
             oroOptions.forEach((item) => {
                 const percentage = Math.round((item.votes / totalOro) * 100);
-                const selected = hasVoted && item.id === votedOptionId;
+                const selected = votedOro && item.id === votedOroOptionId;
+                const idx = pollData.findIndex(p => p.id === item.id);
                 const opt = document.createElement('div');
                 opt.className = `space-y-1 ${selected ? 'rounded-lg ring-1 ring-emerald-500/40 bg-emerald-500/5 p-1.5 -m-1.5' : ''}`;
                 opt.innerHTML = `
@@ -760,9 +767,9 @@
                             <i class="fas ${selected ? 'fa-circle-check text-emerald-400' : 'fa-circle text-slate-600'} shrink-0 text-[9px]"></i>
                             <span class="${selected ? 'text-emerald-300' : 'text-slate-300'} truncate">${escapeHTML(item.team)}</span>
                         </span>
-                        <span class="text-amber-400 shrink-0 text-[10px]">${percentage}%</span>
+                        <span class="text-amber-400 shrink-0 text-[10px]">${percentage}% (${item.votes})</span>
                     </div>
-                    <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-slate-800 ${hasVoted ? 'cursor-default' : 'cursor-pointer'}" ${hasVoted ? '' : `onclick="vote(${pollData.findIndex(p => p.id === item.id)})"`}>
+                    <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-slate-800 ${votedOro ? 'cursor-default' : 'cursor-pointer'}" ${votedOro ? '' : `onclick="voteCup(${idx}, 'ORO')"`}>
                         <div class="${selected ? 'bg-emerald-400' : 'bg-amber-500'} h-1.5 rounded-full" style="width: ${percentage}%"></div>
                     </div>
                 `;
@@ -771,7 +778,8 @@
 
             plataOptions.forEach((item) => {
                 const percentage = Math.round((item.votes / totalPlata) * 100);
-                const selected = hasVoted && item.id === votedOptionId;
+                const selected = votedPlata && item.id === votedPlataOptionId;
+                const idx = pollData.findIndex(p => p.id === item.id);
                 const opt = document.createElement('div');
                 opt.className = `space-y-1 ${selected ? 'rounded-lg ring-1 ring-emerald-500/40 bg-emerald-500/5 p-1.5 -m-1.5' : ''}`;
                 opt.innerHTML = `
@@ -780,9 +788,9 @@
                             <i class="fas ${selected ? 'fa-circle-check text-emerald-400' : 'fa-circle text-slate-600'} shrink-0 text-[9px]"></i>
                             <span class="${selected ? 'text-emerald-300' : 'text-slate-300'} truncate">${escapeHTML(item.team)}</span>
                         </span>
-                        <span class="text-slate-300 shrink-0 text-[10px]">${percentage}%</span>
+                        <span class="text-slate-300 shrink-0 text-[10px]">${percentage}% (${item.votes})</span>
                     </div>
-                    <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-slate-800 ${hasVoted ? 'cursor-default' : 'cursor-pointer'}" ${hasVoted ? '' : `onclick="vote(${pollData.findIndex(p => p.id === item.id)})"`}>
+                    <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-slate-800 ${votedPlata ? 'cursor-default' : 'cursor-pointer'}" ${votedPlata ? '' : `onclick="voteCup(${idx}, 'PLATA')"`}>
                         <div class="${selected ? 'bg-emerald-400' : 'bg-slate-400'} h-1.5 rounded-full" style="width: ${percentage}%"></div>
                     </div>
                 `;
@@ -791,14 +799,21 @@
         }
 
         function vote(index) {
-            if (hasVoted) return;
+            // legacy
+        }
+
+        function voteCup(index, cup) {
+            const cupUpper = String(cup).toUpperCase();
+            if (cupUpper === 'ORO' && votedOro) return;
+            if (cupUpper === 'PLATA' && votedPlata) return;
             const option = pollData[index];
             if (!option) return;
-            api('vote', { optionId: option.id }).catch(err => {
+            api('vote', { optionId: option.id, cup: cupUpper }).catch(err => {
                 if (err.status === 409) {
-                    hasVoted = true;
-                    if (err.data && err.data.votedOptionId !== undefined) votedOptionId = err.data.votedOptionId;
+                    if (cupUpper === 'ORO') votedOro = true;
+                    if (cupUpper === 'PLATA') votedPlata = true;
                     renderPoll();
+                    return;
                 }
                 alert(err.message || 'No se pudo registrar el voto.');
             });
@@ -806,7 +821,7 @@
 
         Object.assign(window, {
             toggleAdminMode, switchTab, filterGroup, adjustScore, deleteEvent, openGoalModal, closeGoalModal, saveGoal,
-            vote, handleLogin, closeLoginModal, handleLogout, resetVotes
+            vote, voteCup, handleLogin, closeLoginModal, handleLogout, resetVotes
         });
 
         renderMatches();

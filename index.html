@@ -628,7 +628,7 @@ function renderMatches() {
                 }
                 card.innerHTML = `
                     <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
-                        <span class="bg-slate-800 px-2 py-0.5 rounded font-bold border border-slate-700">${escapeHTML(m.phase || '')} ${m.bracket_key ? '('+m.bracket_key+')' : ''}</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded font-bold border border-slate-700">${escapeHTML(m.phase || '')}</span>
                         <span class="font-medium"><i class="far fa-clock mr-1"></i>${escapeHTML(m.time)} hs</span>
                     </div>
                     <div class="flex items-center justify-between">

@@ -57,10 +57,10 @@
                 <i class="fas fa-futbol mr-1"></i> Partidos
             </button>
             <button onclick="switchTab('zonas')" id="tab-zonas" class="flex-1 py-3 border-b-2 border-transparent text-slate-400 hover:text-slate-200">
-                <i class="fas fa-th-list mr-1"></i> Zonas
+                <i class="fas fa-th-list mr-1"></i> Zonas/Tabla
             </button>
             <button onclick="switchTab('encuesta')" id="tab-encuesta" class="flex-1 py-3 border-b-2 border-transparent text-slate-400 hover:text-slate-200">
-                <i class="fas fa-poll mr-1"></i> Encuesta
+                <i class="fas fa-poll mr-1"></i> Encuestas
             </button>
         </div>
     </nav>
@@ -73,7 +73,7 @@
                     <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
                     Sábado 31 de Octubre
                 </h2>
-                <span class="text-xs text-slate-400">12 Equipos</span>
+                <span class="text-xs text-slate-400">Fase de Grupos</span>
             </div>
 
             <div class="flex gap-2 mb-4 overflow-x-auto pb-1">
@@ -83,10 +83,270 @@
                 <button onclick="filterGroup('C')" class="group-btn text-xs font-bold px-3 py-1.5 rounded-full bg-slate-800 text-slate-400 border border-slate-700" data-group="C">Grupo C</button>
             </div>
 
-            <div id="matchesContainer" class="space-y-3"></div>
+            <div id="matchesContainer" class="space-y-3 mb-8"></div>
+
+            <div class="flex items-center justify-between mb-3">
+                <h2 class="text-lg font-bold text-slate-200 flex items-center gap-2">
+                    <i class="fas fa-trophy trophy-text"></i>
+                    Domingo 1 de Noviembre
+                </h2>
+                <span class="text-xs text-slate-400">Cruces</span>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-base font-bold text-amber-400 mb-3 flex items-center gap-2">
+                    <i class="fas fa-crown"></i> Copa de Oro
+                </h3>
+                <p class="text-xs text-slate-400 mb-3 font-semibold">Cuartos de final</p>
+                <div class="space-y-2 mb-4">
+                    <div class="card-bg rounded-lg p-3 border border-slate-800">
+                        <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
+                            <span>Cuartos 1</span>
+                            <span><i class="far fa-clock mr-1"></i>09:15 – 09:50 hs</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex-1 text-right font-semibold text-slate-200">Trapito (4.º)</div>
+                            <div class="mx-3 text-slate-500">vs</div>
+                            <div class="flex-1 text-left font-semibold text-slate-200">Fortín Azul (5.º)</div>
+                        </div>
+                    </div>
+                    <div class="card-bg rounded-lg p-3 border border-slate-800">
+                        <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
+                            <span>Cuartos 2</span>
+                            <span><i class="far fa-clock mr-1"></i>09:50 – 10:25 hs</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex-1 text-right font-semibold text-slate-200">Alumni (1.º)</div>
+                            <div class="mx-3 text-slate-500">vs</div>
+                            <div class="flex-1 text-left font-semibold text-slate-200">Embajadores (8.º)</div>
+                        </div>
+                    </div>
+                    <div class="card-bg rounded-lg p-3 border border-slate-800">
+                        <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
+                            <span>Cuartos 3</span>
+                            <span><i class="far fa-clock mr-1"></i>11:00 – 11:35 hs</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex-1 text-right font-semibold text-slate-200">Fortín Blancos (2.º)</div>
+                            <div class="mx-3 text-slate-500">vs</div>
+                            <div class="flex-1 text-left font-semibold text-slate-200">Ferro (7.º)</div>
+                        </div>
+                    </div>
+                    <div class="card-bg rounded-lg p-3 border border-slate-800">
+                        <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
+                            <span>Cuartos 4</span>
+                            <span><i class="far fa-clock mr-1"></i>11:35 – 12:10 hs</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex-1 text-right font-semibold text-slate-200">Racing (3.º)</div>
+                            <div class="mx-3 text-slate-500">vs</div>
+                            <div class="flex-1 text-left font-semibold text-slate-200">Villa Floresta (6.º)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-xs text-slate-400 mb-3 font-semibold">Semifinales</p>
+                <div class="space-y-2 mb-4">
+                    <div class="card-bg rounded-lg p-3 border border-slate-800">
+                        <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
+                            <span>Semifinal 1</span>
+                            <span><i class="far fa-clock mr-1"></i>10:35 – 11:10 hs</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex-1 text-right font-semibold text-slate-300">Ganador Cuartos 1</div>
+                            <div class="mx-3 text-slate-500">vs</div>
+                            <div class="flex-1 text-left font-semibold text-slate-300">Ganador Cuartos 2</div>
+                        </div>
+                    </div>
+                    <div class="card-bg rounded-lg p-3 border border-slate-800">
+                        <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
+                            <span>Semifinal 2</span>
+                            <span><i class="far fa-clock mr-1"></i>12:10 – 12:45 hs</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex-1 text-right font-semibold text-slate-300">Ganador Cuartos 3</div>
+                            <div class="mx-3 text-slate-500">vs</div>
+                            <div class="flex-1 text-left font-semibold text-slate-300">Ganador Cuartos 4</div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-xs text-slate-400 mb-3 font-semibold">Definiciones</p>
+                <div class="space-y-2">
+                    <div class="card-bg rounded-lg p-3 border border-slate-800">
+                        <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
+                            <span>3.º puesto</span>
+                            <span><i class="far fa-clock mr-1"></i>13:00 – 13:35 hs</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex-1 text-right font-semibold text-slate-300">Perdedores de semifinales</div>
+                            <div class="mx-3 text-slate-500">vs</div>
+                            <div class="flex-1 text-left font-semibold text-slate-300">Perdedores de semifinales</div>
+                        </div>
+                    </div>
+                    <div class="card-bg rounded-lg p-3 border border-amber-500/30">
+                        <div class="flex justify-between items-center text-xs text-amber-400 mb-2">
+                            <span class="font-bold">FINAL</span>
+                            <span><i class="far fa-clock mr-1"></i>13:35 – 14:10 hs</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex-1 text-right font-bold text-amber-300">Ganadores de semifinales</div>
+                            <div class="mx-3 text-amber-400">vs</div>
+                            <div class="flex-1 text-left font-bold text-amber-300">Ganadores de semifinales</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-base font-bold text-slate-300 mb-3 flex items-center gap-2">
+                    <i class="fas fa-medal"></i> Copa de Plata
+                </h3>
+                <p class="text-xs text-slate-400 mb-3 font-semibold">Semifinales</p>
+                <div class="space-y-2 mb-4">
+                    <div class="card-bg rounded-lg p-3 border border-slate-800">
+                        <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
+                            <span>Semifinal 1</span>
+                            <span><i class="far fa-clock mr-1"></i>18:00 – 18:35 hs</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex-1 text-right font-semibold text-slate-200">Ferro B (9.º)</div>
+                            <div class="mx-3 text-slate-500">vs</div>
+                            <div class="flex-1 text-left font-semibold text-slate-200">CIFS (12.º)</div>
+                        </div>
+                    </div>
+                    <div class="card-bg rounded-lg p-3 border border-slate-800">
+                        <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
+                            <span>Semifinal 2</span>
+                            <span><i class="far fa-clock mr-1"></i>18:35 – 19:10 hs</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex-1 text-right font-semibold text-slate-200">Estudiantes N. (10.º)</div>
+                            <div class="mx-3 text-slate-500">vs</div>
+                            <div class="flex-1 text-left font-semibold text-slate-200">Sierra Chica (11.º)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-xs text-slate-400 mb-3 font-semibold">Definiciones</p>
+                <div class="space-y-2">
+                    <div class="card-bg rounded-lg p-3 border border-slate-800">
+                        <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
+                            <span>3.º puesto</span>
+                            <span><i class="far fa-clock mr-1"></i>19:10 – 19:45 hs</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex-1 text-right font-semibold text-slate-300">Perdedores de semifinales</div>
+                            <div class="mx-3 text-slate-500">vs</div>
+                            <div class="flex-1 text-left font-semibold text-slate-300">Perdedores de semifinales</div>
+                        </div>
+                    </div>
+                    <div class="card-bg rounded-lg p-3 border border-slate-600">
+                        <div class="flex justify-between items-center text-xs text-slate-300 mb-2">
+                            <span class="font-bold">FINAL</span>
+                            <span><i class="far fa-clock mr-1"></i>19:45 – 20:20 hs</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex-1 text-right font-bold text-slate-200">Ganadores de semifinales</div>
+                            <div class="mx-3 text-slate-400">vs</div>
+                            <div class="flex-1 text-left font-bold text-slate-200">Ganadores de semifinales</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="sec-zonas" class="hidden">
+            <h2 class="text-lg font-bold text-slate-200 mb-4">Tabla General del Torneo</h2>
+            <div class="card-bg rounded-xl overflow-hidden mb-6">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="bg-slate-900/50 border-b border-slate-800">
+                                <th class="text-left py-2.5 px-3 text-xs text-slate-400 font-semibold">Pos.</th>
+                                <th class="text-left py-2.5 px-3 text-xs text-slate-400 font-semibold">Equipo</th>
+                                <th class="text-center py-2.5 px-3 text-xs text-slate-400 font-semibold">Puntos</th>
+                                <th class="text-center py-2.5 px-3 text-xs text-slate-400 font-semibold">DG</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-slate-800/50">
+                                <td class="py-2 px-3 text-slate-300 font-medium">1.º</td>
+                                <td class="py-2 px-3 text-slate-200 font-semibold">Alumni</td>
+                                <td class="py-2 px-3 text-center text-slate-300">9</td>
+                                <td class="py-2 px-3 text-center text-emerald-400">+17</td>
+                            </tr>
+                            <tr class="border-b border-slate-800/50">
+                                <td class="py-2 px-3 text-slate-300 font-medium">2.º</td>
+                                <td class="py-2 px-3 text-slate-200 font-semibold">Fortín Blancos</td>
+                                <td class="py-2 px-3 text-center text-slate-300">9</td>
+                                <td class="py-2 px-3 text-center text-emerald-400">+8</td>
+                            </tr>
+                            <tr class="border-b border-slate-800/50">
+                                <td class="py-2 px-3 text-slate-300 font-medium">3.º</td>
+                                <td class="py-2 px-3 text-slate-200 font-semibold">Racing</td>
+                                <td class="py-2 px-3 text-center text-slate-300">7</td>
+                                <td class="py-2 px-3 text-center text-emerald-400">+5</td>
+                            </tr>
+                            <tr class="border-b border-slate-800/50">
+                                <td class="py-2 px-3 text-slate-300 font-medium">4.º</td>
+                                <td class="py-2 px-3 text-slate-200 font-semibold">Trapito</td>
+                                <td class="py-2 px-3 text-center text-slate-300">6</td>
+                                <td class="py-2 px-3 text-center text-emerald-400">+2</td>
+                            </tr>
+                            <tr class="border-b border-slate-800/50">
+                                <td class="py-2 px-3 text-slate-300 font-medium">5.º</td>
+                                <td class="py-2 px-3 text-slate-200 font-semibold">Fortín Azul</td>
+                                <td class="py-2 px-3 text-center text-slate-300">6</td>
+                                <td class="py-2 px-3 text-center text-slate-400">0</td>
+                            </tr>
+                            <tr class="border-b border-slate-800/50">
+                                <td class="py-2 px-3 text-slate-300 font-medium">6.º</td>
+                                <td class="py-2 px-3 text-slate-200 font-semibold">Villa Floresta</td>
+                                <td class="py-2 px-3 text-center text-slate-300">4</td>
+                                <td class="py-2 px-3 text-center text-emerald-400">+2</td>
+                            </tr>
+                            <tr class="border-b border-slate-800/50">
+                                <td class="py-2 px-3 text-slate-300 font-medium">7.º</td>
+                                <td class="py-2 px-3 text-slate-200 font-semibold">Ferro</td>
+                                <td class="py-2 px-3 text-center text-slate-300">4</td>
+                                <td class="py-2 px-3 text-center text-red-400">-5</td>
+                            </tr>
+                            <tr class="border-b border-slate-800/50">
+                                <td class="py-2 px-3 text-slate-300 font-medium">8.º</td>
+                                <td class="py-2 px-3 text-slate-200 font-semibold">Embajadores</td>
+                                <td class="py-2 px-3 text-center text-slate-300">3</td>
+                                <td class="py-2 px-3 text-center text-slate-400">0</td>
+                            </tr>
+                            <tr class="border-b border-slate-800/50">
+                                <td class="py-2 px-3 text-slate-300 font-medium">9.º</td>
+                                <td class="py-2 px-3 text-slate-200 font-semibold">Ferro B</td>
+                                <td class="py-2 px-3 text-center text-slate-300">3</td>
+                                <td class="py-2 px-3 text-center text-red-400">-1</td>
+                            </tr>
+                            <tr class="border-b border-slate-800/50">
+                                <td class="py-2 px-3 text-slate-300 font-medium">10.º</td>
+                                <td class="py-2 px-3 text-slate-200 font-semibold">Estudiantes N.</td>
+                                <td class="py-2 px-3 text-center text-slate-300">3</td>
+                                <td class="py-2 px-3 text-center text-red-400">-6</td>
+                            </tr>
+                            <tr class="border-b border-slate-800/50">
+                                <td class="py-2 px-3 text-slate-300 font-medium">11.º</td>
+                                <td class="py-2 px-3 text-slate-200 font-semibold">Sierra Chica</td>
+                                <td class="py-2 px-3 text-center text-slate-300">1</td>
+                                <td class="py-2 px-3 text-center text-red-400">-5</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-3 text-slate-300 font-medium">12.º</td>
+                                <td class="py-2 px-3 text-slate-200 font-semibold">CIFS</td>
+                                <td class="py-2 px-3 text-center text-slate-300">0</td>
+                                <td class="py-2 px-3 text-center text-red-400">-14</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
             <h2 class="text-lg font-bold text-slate-200 mb-4">Composición de Zonas</h2>
             <div class="space-y-4">
                 <div class="card-bg rounded-xl p-4">
@@ -120,21 +380,38 @@
         </section>
 
         <section id="sec-encuesta" class="hidden">
-            <div class="card-bg rounded-xl p-5 border border-amber-500/20">
-                <div class="flex items-start justify-between gap-3">
-                    <div>
-                        <h2 class="text-xl font-black text-amber-400 mb-1">¿Quién creés que gana la Copa?</h2>
-                        <p class="text-xs text-slate-400 mb-2">¡Votá por tu candidato para la 1.ª Edición!</p>
-                    </div>
-                    <button id="resetVotesBtn" onclick="resetVotes()" class="hidden shrink-0 text-[11px] bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-300 px-2 py-1 rounded-lg transition">
-                        <i class="fas fa-rotate-left mr-1"></i>Reiniciar
-                    </button>
+            <div class="flex items-start justify-between gap-3 mb-4">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-200">Encuestas</h2>
+                    <p class="text-xs text-slate-400">Votá por el ganador de cada copa</p>
                 </div>
-                <p id="pollStatus" class="text-xs text-emerald-400 font-semibold mb-4 hidden">
-                    <i class="fas fa-check-circle mr-1"></i> Ya registraste tu voto
-                </p>
+                <button id="resetVotesBtn" onclick="resetVotes()" class="hidden shrink-0 text-[11px] bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-300 px-2 py-1 rounded-lg transition">
+                    <i class="fas fa-rotate-left mr-1"></i>Reiniciar
+                </button>
+            </div>
 
-                <div id="pollOptions" class="space-y-3"></div>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="card-bg rounded-xl p-4 border border-amber-500/20">
+                    <div class="flex items-center gap-2 mb-1">
+                        <i class="fas fa-crown text-amber-400"></i>
+                        <h3 class="text-sm font-black text-amber-400">Copa de Oro</h3>
+                    </div>
+                    <p id="pollStatusOro" class="text-[10px] text-emerald-400 font-semibold mb-3 hidden">
+                        <i class="fas fa-check-circle mr-1"></i> Ya votaste
+                    </p>
+                    <div id="pollOptionsOro" class="space-y-2"></div>
+                </div>
+
+                <div class="card-bg rounded-xl p-4 border border-slate-600/50">
+                    <div class="flex items-center gap-2 mb-1">
+                        <i class="fas fa-medal text-slate-300"></i>
+                        <h3 class="text-sm font-black text-slate-300">Copa de Plata</h3>
+                    </div>
+                    <p id="pollStatusPlata" class="text-[10px] text-emerald-400 font-semibold mb-3 hidden">
+                        <i class="fas fa-check-circle mr-1"></i> Ya votaste
+                    </p>
+                    <div id="pollOptionsPlata" class="space-y-2"></div>
+                </div>
             </div>
         </section>
 
@@ -442,37 +719,74 @@
         }
 
         function renderPoll() {
-            const container = document.getElementById('pollOptions');
-            container.innerHTML = '';
-            const chosen = pollData.find(p => p.id === votedOptionId);
-            const statusEl = document.getElementById('pollStatus');
-            statusEl.classList.toggle('hidden', !hasVoted);
-            if (hasVoted) {
-                statusEl.innerHTML = chosen
-                    ? `<i class="fas fa-check-circle mr-1"></i> Ya votaste por ${escapeHTML(chosen.team)}`
-                    : `<i class="fas fa-check-circle mr-1"></i> Ya registraste tu voto`;
-            }
-            const totalVotes = pollData.reduce((acc, curr) => acc + curr.votes, 0) || 1;
+            const containerOro = document.getElementById('pollOptionsOro');
+            const containerPlata = document.getElementById('pollOptionsPlata');
+            if (containerOro) containerOro.innerHTML = '';
+            if (containerPlata) containerPlata.innerHTML = '';
 
-            pollData.forEach((item, index) => {
-                const percentage = Math.round((item.votes / totalVotes) * 100);
+            const statusElOro = document.getElementById('pollStatusOro');
+            const statusElPlata = document.getElementById('pollStatusPlata');
+
+            const oroOptions = pollData.filter(p => p.category === 'ORO');
+            const plataOptions = pollData.filter(p => p.category === 'PLATA');
+
+            const chosenOro = oroOptions.find(p => p.id === votedOptionId);
+            const chosenPlata = plataOptions.find(p => p.id === votedOptionId);
+
+            if (statusElOro) {
+                statusElOro.classList.toggle('hidden', !(hasVoted && chosenOro));
+                if (hasVoted && chosenOro) {
+                    statusElOro.innerHTML = `<i class="fas fa-check-circle mr-1"></i> Votaste por ${escapeHTML(chosenOro.team)}`;
+                }
+            }
+            if (statusElPlata) {
+                statusElPlata.classList.toggle('hidden', !(hasVoted && chosenPlata));
+                if (hasVoted && chosenPlata) {
+                    statusElPlata.innerHTML = `<i class="fas fa-check-circle mr-1"></i> Votaste por ${escapeHTML(chosenPlata.team)}`;
+                }
+            }
+
+            const totalOro = oroOptions.reduce((acc, curr) => acc + curr.votes, 0) || 1;
+            const totalPlata = plataOptions.reduce((acc, curr) => acc + curr.votes, 0) || 1;
+
+            oroOptions.forEach((item) => {
+                const percentage = Math.round((item.votes / totalOro) * 100);
                 const selected = hasVoted && item.id === votedOptionId;
                 const opt = document.createElement('div');
-                opt.className = `space-y-1 ${selected ? 'rounded-lg ring-1 ring-emerald-500/40 bg-emerald-500/5 p-2 -m-2' : ''}`;
+                opt.className = `space-y-1 ${selected ? 'rounded-lg ring-1 ring-emerald-500/40 bg-emerald-500/5 p-1.5 -m-1.5' : ''}`;
                 opt.innerHTML = `
-                    <div class="flex justify-between items-center text-xs font-semibold gap-2">
-                        <span class="flex items-center gap-2 min-w-0">
-                            <i class="fas ${selected ? 'fa-circle-check text-emerald-400' : 'fa-circle text-slate-600'} shrink-0"></i>
+                    <div class="flex justify-between items-center text-[11px] font-semibold gap-1">
+                        <span class="flex items-center gap-1 min-w-0">
+                            <i class="fas ${selected ? 'fa-circle-check text-emerald-400' : 'fa-circle text-slate-600'} shrink-0 text-[9px]"></i>
                             <span class="${selected ? 'text-emerald-300' : 'text-slate-300'} truncate">${escapeHTML(item.team)}</span>
-                            ${selected ? '<span class="text-[9px] uppercase tracking-wide bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-1.5 py-0.5 rounded shrink-0">Tu voto</span>' : ''}
                         </span>
-                        <span class="text-amber-400 shrink-0">${percentage}% (${item.votes} votos)</span>
+                        <span class="text-amber-400 shrink-0 text-[10px]">${percentage}%</span>
                     </div>
-                    <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden border border-slate-800 ${hasVoted ? 'cursor-default' : 'cursor-pointer'}" ${hasVoted ? '' : `onclick="vote(${index})"`}>
-                        <div class="${selected ? 'bg-emerald-400' : 'bg-amber-500'} h-2.5 rounded-full" style="width: ${percentage}%"></div>
+                    <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-slate-800 ${hasVoted ? 'cursor-default' : 'cursor-pointer'}" ${hasVoted ? '' : `onclick="vote(${pollData.findIndex(p => p.id === item.id)})"`}>
+                        <div class="${selected ? 'bg-emerald-400' : 'bg-amber-500'} h-1.5 rounded-full" style="width: ${percentage}%"></div>
                     </div>
                 `;
-                container.appendChild(opt);
+                if (containerOro) containerOro.appendChild(opt);
+            });
+
+            plataOptions.forEach((item) => {
+                const percentage = Math.round((item.votes / totalPlata) * 100);
+                const selected = hasVoted && item.id === votedOptionId;
+                const opt = document.createElement('div');
+                opt.className = `space-y-1 ${selected ? 'rounded-lg ring-1 ring-emerald-500/40 bg-emerald-500/5 p-1.5 -m-1.5' : ''}`;
+                opt.innerHTML = `
+                    <div class="flex justify-between items-center text-[11px] font-semibold gap-1">
+                        <span class="flex items-center gap-1 min-w-0">
+                            <i class="fas ${selected ? 'fa-circle-check text-emerald-400' : 'fa-circle text-slate-600'} shrink-0 text-[9px]"></i>
+                            <span class="${selected ? 'text-emerald-300' : 'text-slate-300'} truncate">${escapeHTML(item.team)}</span>
+                        </span>
+                        <span class="text-slate-300 shrink-0 text-[10px]">${percentage}%</span>
+                    </div>
+                    <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-slate-800 ${hasVoted ? 'cursor-default' : 'cursor-pointer'}" ${hasVoted ? '' : `onclick="vote(${pollData.findIndex(p => p.id === item.id)})"`}>
+                        <div class="${selected ? 'bg-emerald-400' : 'bg-slate-400'} h-1.5 rounded-full" style="width: ${percentage}%"></div>
+                    </div>
+                `;
+                if (containerPlata) containerPlata.appendChild(opt);
             });
         }
 

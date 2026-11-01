@@ -21,6 +21,7 @@ create table if not exists public.match_events (
 create table if not exists public.poll_options (
   id integer primary key,
   team text not null,
+  category text not null default 'GENERAL',
   votes integer not null default 0 check (votes >= 0)
 );
 
@@ -71,19 +72,19 @@ select setval(
   greatest((select coalesce(max(id), 1) from public.match_events), 1)
 );
 
-insert into public.poll_options (id, team, votes) values
-  (1, 'Trapito', 57),
-  (2, 'Villa Floresta', 25),
-  (3, 'Estudiantes Negro', 9),
-  (4, 'Embajadores', 15),
-  (5, 'Ferro Blanco', 6),
-  (6, 'Racing', 11),
-  (7, 'Alumni', 0),
-  (8, 'CIFJ Proyecto Jugador', 0),
-  (9, 'Ferro Celeste', 0),
-  (10, 'Fortín Azul', 0),
-  (11, 'Fortín Blanco', 0),
-  (12, 'Sierra Chica', 0)
+insert into public.poll_options (id, team, votes, category) values
+  (1, 'Alumni', 0, 'ORO'),
+  (2, 'Trapito', 0, 'ORO'),
+  (3, 'Racing', 0, 'ORO'),
+  (4, 'Fortín Blancos', 0, 'ORO'),
+  (5, 'Fortín Azul', 0, 'ORO'),
+  (6, 'Villa Floresta', 0, 'ORO'),
+  (7, 'Ferro', 0, 'ORO'),
+  (8, 'Embajadores', 0, 'ORO'),
+  (9, 'Ferro B', 0, 'PLATA'),
+  (10, 'Estudiantes N.', 0, 'PLATA'),
+  (11, 'Sierra Chica', 0, 'PLATA'),
+  (12, 'CIFS', 0, 'PLATA')
 on conflict (id) do nothing;
 
 create or replace function public.vote_for_option(p_voter_hash text, p_option_id integer)
